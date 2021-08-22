@@ -53,16 +53,16 @@ namespace TripletTextAnalyser
                             if (char.IsLetter(word[i]) & char.IsLetter(word[i + 1]) & char.IsLetter(word[i + 2]))
                             {
                                 _AreAllLetters = true;
-                                if (word[i] == word[i + 1] & word[i] == word[i + 2])
+                            }
+                            if (word[i] == word[i + 1] & word[i] == word[i + 2])
+                            {
+                                if (_AreAllLetters)
                                 {
-                                    if (_AreAllLetters)
-                                    {
-                                        TripletSubString = $"{word[i]}{word[i + 1]}{word[i + 2]}";
-                                        _AreAllLetters = false;
-                                        TripletsDict.TryGetValue(TripletSubString, out TripletCounter);
-                                        TripletCounter++;
-                                        TripletsDict.AddOrUpdate(TripletSubString, TripletCounter, (KeyString, KeyValue) => TripletCounter); // по выданному ключу string обновляет значение словаря на TripletCounter
-                                    }
+                                    TripletSubString = $"{word[i]}{word[i + 1]}{word[i + 2]}";
+                                    _AreAllLetters = false;
+                                    TripletsDict.TryGetValue(TripletSubString, out TripletCounter);
+                                    TripletCounter++;
+                                    TripletsDict.AddOrUpdate(TripletSubString, TripletCounter, (KeyString, KeyValue) => TripletCounter); // по выданному ключу string обновляет значение словаря на TripletCounter
                                 }
                             }
                         }
